@@ -6,7 +6,7 @@ import numpy as np
 
 main = Blueprint('main', __name__)
 # app = Flask(__name__)
-model = pickle.load(open('Loan_Pridiction_WebApp\model.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
 @main.route('/')
 def home():
