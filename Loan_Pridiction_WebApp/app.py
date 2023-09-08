@@ -1,18 +1,19 @@
 # save this as app.py
-from flask import Flask, escape, request, render_template
+from flask import Blueprint, Flask, escape, request, render_template
 import pickle
 import numpy as np
 
 def createapp():
-    app = Flask(__name__)
+    main = Blueprint('main', __name__)
+    # app = Flask(__name__)
     model = pickle.load(open('Loan_Pridiction_WebApp\model.pkl', 'rb'))
 
-    @app.route('/')
+    @main.route('/')
     def home():
         return render_template("index.html")
 
 
-    @app.route('/predict', methods=['GET', 'POST'])
+    @main.route('/predict', methods=['GET', 'POST'])
     def predict():
         if request.method ==  'POST':
             gender = request.form['gender']
@@ -102,7 +103,7 @@ def createapp():
         else:
             return render_template("prediction.html")
 
-    return app
+    # return app
 
 # def pr_build():
 #     return app
