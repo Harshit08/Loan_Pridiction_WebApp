@@ -3,18 +3,18 @@ from flask import Blueprint, Flask, escape, request, render_template
 import pickle
 import numpy as np
 
-def createapp():
-    main = Blueprint('main', __name__)
-    # app = Flask(__name__)
-    model = pickle.load(open('Loan_Pridiction_WebApp\model.pkl', 'rb'))
 
-    @main.route('/')
-    def home():
-        return render_template("index.html")
+main = Blueprint('main', __name__)
+# app = Flask(__name__)
+model = pickle.load(open('Loan_Pridiction_WebApp\model.pkl', 'rb'))
+
+@main.route('/')
+def home():
+    return render_template("index.html")
 
 
-    @main.route('/predict', methods=['GET', 'POST'])
-    def predict():
+@main.route('/predict', methods=['GET', 'POST'])
+def predict():
         if request.method ==  'POST':
             gender = request.form['gender']
             married = request.form['married']
