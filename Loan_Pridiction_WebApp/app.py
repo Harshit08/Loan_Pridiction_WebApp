@@ -1,12 +1,19 @@
 # save this as app.py
 from flask import Blueprint, Flask, escape, request, render_template
+import os
 import pickle
 import numpy as np
 
 
 main = Blueprint('main', __name__)
 # app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
+# Get the full path to the model file
+model_file_path = os.path.join(os.path.dirname(__file__), 'path_to_model', 'model.pkl')
+
+# Open the model file
+model = pickle.load(open(model_file_path, 'rb'))
+
+# model = pickle.load(open('model.pkl', 'rb'))
 
 @main.route('/')
 def home():
